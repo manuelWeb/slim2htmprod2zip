@@ -1,0 +1,21 @@
+== Slim::Template.new('FR/var.slim').render
+doctype strict
+html[xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"]
+  head
+    meta[http-equiv="Content-Type" content="text/html;charset=UTF-8"]
+    title == $TH
+    link[type="text/css" rel="stylesheet" href="index.css"]
+    script[src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"]
+  body
+    / == $styleIE
+    #evtFirst_Link.container
+      img.bg src="bg.jpg" alt=""
+
+      / img.price src="price.png" alt=""
+
+      a.js-btn[href==$linkRay onclick==$ga_ray]
+        span.reflet
+          / | &nbsp;
+        span == $txtBtn
+    
+    script[src="js-btn.js" type="text/javascript"]
