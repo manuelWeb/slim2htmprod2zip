@@ -23,8 +23,18 @@ class Slimed
     end
   end
 end
+bf = Slimed.new('BF/indexC.slim', 'BF/indexC.html')
+bv = Slimed.new('BV/indexC.slim', 'BV/indexC.html')
+de = Slimed.new('DE/indexC.slim', 'DE/indexC.html')
 fr = Slimed.new('FR/indexC.slim', 'FR/indexC.html')
+nl = Slimed.new('NL/indexC.slim', 'NL/indexC.html')
+uk = Slimed.new('UK/indexC.slim', 'UK/indexC.html')
+bf.tohtml
+bv.tohtml
+de.tohtml
 fr.tohtml
+nl.tohtml
+uk.tohtml
 # ToHtmlProd = indexC.htmlToIndex.html+zipMeNow(toHtmlFragment<zipMeNow) 
 class ToHtmlProd
   attr_accessor :srcHtml, :srcJs, :path, :zipfile_name
@@ -42,12 +52,14 @@ class ToHtmlProd
     # puts "\ncode indexC.html frag : \n\n #{frag}  \n"
     # srcJs1 = doc.at_css(srcJs[0])
     srcJs1 = doc.at_css(srcJs[0])
+    srcJs2 = doc.at_css(srcJs[1])
     # compil JS + HTML
     File.open("#{path}index.html", "w") do |file|
       # **placer le script JS en debut de document
       file.puts "#{frag}"
       # file.puts "\n#{srcJs1}"
       file.puts "\n#{srcJs1}"
+      file.puts "\n#{srcJs2}"
     end
     a = File.read("#{path}index.html").force_encoding("UTF-8")
     # **attention** CODAGE a compléter (GSUB)
@@ -67,13 +79,30 @@ class ToHtmlProd
         end
         puts "your #{zipfile_name} is ready guy" # verif console folder name + ready
       end
+      Dir.chdir "../"
     end
   end
 end
 date = Time.new
 currentdate = date.strftime("%m%y")
 # puts currentdate # verif console date
-frprod = ToHtmlProd.new("indexC.html",['[src~="js-btn.js"]'],"FR/","TL#{currentdate}_#{projectName}.zip")
+bfprod = ToHtmlProd.new("indexC.html",['[src~="etoilesShow.js"]','[src~="js-btn.js"]'],"BF/","BF#{currentdate}_#{projectName}.zip")
+bvprod = ToHtmlProd.new("indexC.html",['[src~="etoilesShow.js"]','[src~="js-btn.js"]'],"BV/","BV#{currentdate}_#{projectName}.zip")
+deprod = ToHtmlProd.new("indexC.html",['[src~="etoilesShow.js"]','[src~="js-btn.js"]'],"DE/","DE#{currentdate}_#{projectName}.zip")
+frprod = ToHtmlProd.new("indexC.html",['[src~="etoilesShow.js"]','[src~="js-btn.js"]'],"FR/","FR#{currentdate}_#{projectName}.zip")
+nlprod = ToHtmlProd.new("indexC.html",['[src~="etoilesShow.js"]','[src~="js-btn.js"]'],"NL/","NL#{currentdate}_#{projectName}.zip")
+ukprod = ToHtmlProd.new("indexC.html",['[src~="etoilesShow.js"]','[src~="js-btn.js"]'],"UK/","UK#{currentdate}_#{projectName}.zip")
+bfprod.toHtmlFragment
+bfprod.zipMeNow
+bvprod.toHtmlFragment
+bvprod.zipMeNow
+deprod.toHtmlFragment
+deprod.zipMeNow
 frprod.toHtmlFragment
 frprod.zipMeNow
+nlprod.toHtmlFragment
+nlprod.zipMeNow
+ukprod.toHtmlFragment
+ukprod.zipMeNow
+
 # system("explorer #{fr.out}") # openInBrowser

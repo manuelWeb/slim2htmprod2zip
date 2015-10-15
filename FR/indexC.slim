@@ -8,14 +8,17 @@ html[xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"]
     script[src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"]
   body
     / == $styleIE
-    #evtFirst_Link.container
-      img.bg src="bg.jpg" alt=""
+    #evtFirst_Link.centralEvent
+      img.animated-stars src="animated-stars.png" alt=""
 
       / img.price src="price.png" alt=""
 
-      a.js-btn[href==$linkRay onclick==$ga_ray]
-        span.reflet
-          / | &nbsp;
-        span == $txtBtn
+      a.js-btn.gradient-btn-evtfirst[href==$linkRay onclick==$ga_ray]
+        / span.reflet
+
+        span
+         == $txtBtn
+         img src="btnEvtFirst-arrow.png" alt=""
     
+    script[src="etoilesShow.js" type="text/javascript"]
     script[src="js-btn.js" type="text/javascript"]
